@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/testS">press it</a>
+<a href="TestServlet">press it !!!!</a>
 </body>
 </html>
