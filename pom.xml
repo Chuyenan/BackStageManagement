@@ -11,6 +11,7 @@
     <module>GStore_Dao</module>
     <module>GStore_Service</module>
     <module>GStore_Web</module>
+      <module>GStore_Domain</module>
   </modules>
   <packaging>pom</packaging>
 
