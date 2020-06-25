@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--导入dao层的applicationContext配置文件-->
+    <import resource="applicationContext-dao.xml"/>
+
+    <!--配置事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--配置数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--建立事务通知-->
+    <tx:advice id="advice">
+        <!--事务通知属性-->
+        <tx:attributes>
+            <!--查询操作，-传播属性为SUPPORTS，只读-->
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <!--其他操作，传播属性默认为REQUIRED，读写-->
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置切面-->
+    <aop:config>
+        <!--配置切入点-->
+        <aop:pointcut id="ptn" expression="execution(* com.npu.service.impl.*.*(..))"/>
+        <!--配置事务通知和事务切入点-->
+        <aop:advisor advice-ref="advice" pointcut-ref="ptn"/>
+    </aop:config>
+</beans>
