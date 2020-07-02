@@ -6,6 +6,10 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
+  <welcome-file-list>
+    <welcome-file>/pages/login.jsp</welcome-file>
+  </welcome-file-list>
+
   <!--导入Spring配置文件-->
   <context-param>
     <param-name>contextConfigLocation</param-name>
