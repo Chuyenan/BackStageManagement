@@ -17,7 +17,7 @@
     <url>http://www.example.com</url>
 
     <properties>
-        <jackson-version>2.10.0</jackson-version>
+        <jackson-version>2.12.6.1</jackson-version>
     </properties>
 
     <dependencies>
